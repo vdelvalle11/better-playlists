@@ -1,32 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+let primaryColor = {color: 'White'}
 
 class App extends Component {
   render() {
-    let firstName = 'Victor'
-    let lastName = 'Del Valle'
-    let red = '#FF1212'
-    let nameStyle = {color: red}
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            My name is <span style={nameStyle}>{firstName} {lastName}</span> and I am learning react!
-          </p>
-          <p>
-          I am only adding this to test my atom setup
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1 style={primaryColor}>Title</h1>
+        <Aggregate />
+        <Aggregate />
+        <Filter />
+      </div>
+    );
+  }
+}
+
+class Aggregate extends Component {
+  render() {
+    return (
+      <div style={{display: "inline-block", width: "40%"}}>
+        <h2 style={primaryColor}>Number Text</h2>
+      </div>
+    );
+  }
+}
+
+class Filter extends Component {
+  render() {
+    return (
+      <div>
+        <input type="text" placeholder="Apply Filters"/>
+        <span style={primaryColor}>Filter</span>
       </div>
     );
   }
