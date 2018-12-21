@@ -15,6 +15,9 @@ class App extends Component {
           <p>
             My name is <span style={nameStyle}>{firstName} {lastName}</span> and I am learning react!
           </p>
+          <p>
+          I am only adding this to test my atom setup
+          </p>
           <a
             className="App-link"
             href="https://reactjs.org"
