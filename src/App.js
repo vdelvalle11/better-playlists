@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-let primaryTextColor = '#fff'
 let defaultStyle = {
-  color: primaryTextColor
+  color: '#FFF'
 };
 
 class App extends Component {
@@ -13,6 +12,9 @@ class App extends Component {
         <Aggregate />
         <Aggregate />
         <Filter />
+        <Playlist />
+        <Playlist />
+        <Playlist />
         <Playlist />
       </div>
     );
@@ -43,7 +45,7 @@ class Filter extends Component {
 class Playlist extends Component {
   render() {
     return (
-      <div style={{...defaultStyle, width: '25%'}}>
+      <div style={{...defaultStyle, width: '25%', display: 'inline-block'}}>
         <img />
         <h3>Playlist name</h3>
         <ul>
