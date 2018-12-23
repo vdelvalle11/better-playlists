@@ -44,39 +44,6 @@ let fakeServerData= {
   }
 }
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {serverData: {}}
-  }
-  componentDidMount(){
-    setTimeout(
-      () => {
-        this.setState({serverData: fakeServerData});
-      },1000);
-  }
-  render() {
-    return (
-      <div className="App">
-        {this.state.serverData.user ?
-        <div>
-            <h1 style={{...defaultStyle, 'font-size': '54px'}}>
-            {this.state.serverData.user.name}'s Playlists
-          </h1>
-          <PlaylistCounter playlists={this.state.serverData.user.playlists}/>
-          <HoursCounter playlists={this.state.serverData.user.playlists}/>
-          <Filter />
-          <Playlist />
-          <Playlist />
-          <Playlist />
-          <Playlist />
-        </div> : <h1 style={defaultStyle}>Loading...</h1>
-      }
-    </div>
-    );
-  }
-}
-
 class PlaylistCounter extends Component {
   render() {
     return (
@@ -116,18 +83,51 @@ class Filter extends Component {
 
 class Playlist extends Component {
   render() {
+    let playlist = this.props.playlist
     return (
       <div style={{...defaultStyle, width: '25%', display: 'inline-block'}}>
         <img />
-        <h3>Playlist name</h3>
+        <h3>{playlist.name}</h3>
         <ul>
-          <li>Song1</li>
-          <li>Song2</li>
-          <li>Song3</li>
+          {playlist.songs.map(song =>
+            <li>{song.name}</li>
+          )}
         </ul>
       </div>
     );
   };
+}
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {serverData: {}}
+  }
+  componentDidMount(){
+    setTimeout(
+      () => {
+        this.setState({serverData: fakeServerData});
+      },1000);
+  }
+  render() {
+    return (
+      <div className="App">
+        {this.state.serverData.user ?
+        <div>
+            <h1 style={{...defaultStyle, 'font-size': '54px'}}>
+            {this.state.serverData.user.name}'s Playlists
+          </h1>
+          <PlaylistCounter playlists={this.state.serverData.user.playlists}/>
+          <HoursCounter playlists={this.state.serverData.user.playlists}/>
+          <Filter />
+          {this.state.serverData.user.playlists.map(playlist =>
+            <Playlist playlist={playlist} />
+          )}
+        </div> : <h1 style={defaultStyle}>Loading...</h1>
+      }
+    </div>
+    );
+  }
 }
 
 export default App;
